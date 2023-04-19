@@ -21,11 +21,16 @@ int cofactor(){
 
 int determinat(int size, int *arr){
     if(size == 2){
-        return arr[0][0];
+        return ((*(arr))*(*(arr+3)))-((*(arr+1))*(*(arr+2)));
+    }
+    else{
+        for(int i=0;i<size;i++){
+           ; 
+        }
     }
 }
 
-int *new_matrix(int size, int arr[][size], int a, int b){
+int *new_matrix(int size, int *arr, int a, int b){
     int* arrPtr;
     int *matrix = (int *) calloc((size - 1) * (size - 1), sizeof(int));
     arrPtr = matrix;
@@ -39,7 +44,7 @@ int *new_matrix(int size, int arr[][size], int a, int b){
             if(j == (b-1)){
                 continue;
             }
-            *(matrix+(row_count*(size-1))+col_count) = arr[i][j];
+            *(matrix+(row_count*(size-1))+col_count) = *(arr+(i*size+j));
             col_count++;
         }
         row_count++;

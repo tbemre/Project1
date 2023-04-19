@@ -7,7 +7,7 @@ int cofactor();
 
 int determinat(int size, int *arr);
 
-int *new_matrix(int size, int arr[][size],int a,int b);
+int *new_matrix(int size, int *arr,int a,int b);
 void free_memory(void* ptr);
 
 #endif
