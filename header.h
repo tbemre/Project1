@@ -5,9 +5,9 @@ void print_matrix(int *arr, int size);
 
 int cofactor();
 
-int determinat(int row,int column, int arr[][column]);
+int determinat(int size, int *arr);
 
-int *new_matix(int size, int arr[][size],int a,int b);
-
+int *new_matrix(int size, int arr[][size],int a,int b);
+void free_memory(void* ptr);
 
 #endif
