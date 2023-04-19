@@ -1,3 +1,3 @@
 test: main.c
-	gcc main.c -o main
+	gcc main.c header.h header.c -o main
 	./main
