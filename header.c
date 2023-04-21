@@ -1,12 +1,7 @@
 #include <stdio.h>
 #include<stdlib.h>
 #include "header.h"
-void print_array(int arr[],int size){
-    for(int i=0; i<size;i++){
-        printf("%d ", arr[i]);
-    }
-    printf("\n");
-}
+
 void print_matrix(int *arr, int size){
     for(int i=0;i<size;i++){
         for(int j=0;j<size;j++){
@@ -15,15 +10,16 @@ void print_matrix(int *arr, int size){
         printf("\n");
     }
 }
+
 void cofactor(int size, int* arr, int *temp, int a, int b){
     int row_count = 0;
     for(int i = 0; i < size; i++){
-        if(i == (a - 1)){
+        if(i == a){
             continue;
         }
         int col_count = 0;
         for(int j = 0; j < size; j++){
-            if(j == (b - 1)){
+            if(j == b){
                 continue;
             }
             *(temp + (row_count * (size - 1)) + col_count) = *(arr + (i * size) + j);
@@ -35,18 +31,16 @@ void cofactor(int size, int* arr, int *temp, int a, int b){
 
 int determinant(int size, int *arr){
     int det=0;
-    int sign = 1;
-    if(size == 2){
-        return (*(arr))*(*(arr+3))-(*(arr+1))*(*(arr+2));
+    if (size == 1) {
+        return *arr;
     }
     else{
-        int *cofac_matrix = malloc(sizeof(int) * (size - 1) * (size - 1));
+        int cof[size-1][size-1];
+        int *cofac_matrix = &cof[0][0];
         for(int i = 0; i < size; i++){
             cofactor(size, arr, cofac_matrix, 0, i);
-            det += sign * (*(arr+i)) * determinant(size - 1, cofac_matrix);
-            sign = -sign;
+            det += (i % 2 == 0 ? 1 :-1) * (*(arr+i)) * determinant(size - 1, cofac_matrix);
         }
-        free(cofac_matrix);
     }
     return det;
 }
