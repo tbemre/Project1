@@ -4,13 +4,19 @@
 
 int main()
 {
-    int *ptr;
-    int arr[3][3]= {{1,2,3},
-                    {4,5,6},
-                    {7,8,9}};
-    ptr = &arr[0][0];
-    int x = determinant(3,ptr);
-    printf("%d",x);
+    int size;
+    printf("please enter the size of the matrix you want:\n");
+    scanf("%d",&size);
+    int arr[size][size];
+    printf("please enter the elements of matrix:\n");
+    for(int i=0;i<size;i++){
+        for(int j=0;j<size;j++){
+            scanf("%d",&arr[i][j]);
+        }
+    }
+    if(check(size,arr)){
+        printf("The determinate of the matrix you entered is: %d",determinant(size,&arr[0][0]));
+    }
     printf("\n");
     return 0;
 }
